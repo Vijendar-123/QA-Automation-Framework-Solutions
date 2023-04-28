@@ -6,6 +6,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework21 extends BaseTest {
+
+    //Prerequisite - at least one user-created playlist
     String newPlaylistName = "Test Pro Edited Playlist2";
     @Test
     public void renamePlaylist(){

@@ -4,6 +4,8 @@ import pom.HomePage;
 import pom.LoginPage;
 
 public class Homework22 extends BaseTest {
+
+    //Prerequisite - at least one user-created playlist
     @Test
     public void renamePlaylist(){
         String playlistName = "Test Pro Edited Playlist";
