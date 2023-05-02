@@ -58,6 +58,7 @@ public class BaseTest {
     public static void clickSubmit() {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
+
     }
 
     public static void clickSaveButton() {
