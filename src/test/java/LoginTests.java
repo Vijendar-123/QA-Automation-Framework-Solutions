@@ -8,13 +8,11 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-
     static ChromeOptions options = new ChromeOptions();
     @Test
     public void loginInvalidEmailValidPasswordTest(){
         // Pre-condition
-        //      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
+        // Added ChromeOptions argument below to fix websocket error
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
@@ -46,8 +44,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginValidEmailPasswordTest(){
-        //      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
+//      Added ChromeOptions argument below to fix websocket error
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
@@ -79,9 +76,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void loginValidEmailEmptyPasswordTest() {
-
 //      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
