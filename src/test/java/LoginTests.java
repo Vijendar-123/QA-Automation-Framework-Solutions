@@ -9,115 +9,39 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
-    static ChromeOptions options = new ChromeOptions();
-    @Test
-    public static void LoginEmptyEmailPasswordTest () throws InterruptedException {
-        // Simple comment
+    @Test (enabled = true, priority = 0, description = "Login with invalid email and valid password")
+    public void loginInvalidEmailValidPasswordTest(){
 
-//      Added ChromeOptions argument below to fix websocket error
-        options.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        navigateToPage();
+        provideEmail("invalid@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
 
-        String url = "https://bbb.testpro.io/";
-        Thread.sleep(2000);
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        Thread.sleep(2000);
-        driver.quit();
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
     }
 
-    @Test
-    public static void LoginInvalidEmail() {
-        //Login Not Existing Email:
-        //Precondition: Chrome browser should be opened DONE
-        // declare driver
-        //Step1. Open koel login page DONE
-        // tell driver to load koel page
-        //Step2. Enter Not Existing email
-        // find email field
-        // click into email field
-        // enter invalid email inside email field
-        //Step3. Enter Correct password
-        // find password field
-        // click into password field
-        // enter anything
-        //Step4. Click Login button
-        // find the login button
-        // click the login button
-        //Expected result: User should stay on login page
-        // assert the present of email field
+    @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
+    public void loginValidEmailPasswordTest(){
 
-//      Added ChromeOptions argument below to fix websocket error
-
-        options.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver(options);
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
-        //Step2. Enter Not Existing email
-        // find email field
-        // click into email field
-        // enter invalid email inside email field
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.click();
-        emailField.sendKeys("cucaracha@class.com");
-
-        //Step3. Enter Correct password
-        // find password field
-        // click into password field
-        // enter anything
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
-        passwordField.click();
-        passwordField.sendKeys("ayCaramba");
-
-        //Step4. Click Login button
-        // find the login button
-        // click the login button
-        WebElement loginButton = driver.findElement(By.cssSelector("[type='submit']"));
-        loginButton.click();
-
-        //Expected result: User should stay on login page
-        // assert the present of email field
-        Assert.assertTrue(emailField.isDisplayed());
-        driver.quit();
+        navigateToPage();
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+        isAvatarDisplayed();
     }
 
-    @Test
-    public static void LoginValidEmailPasswordTest() throws InterruptedException {
-        // Precondition: Chrome browser should be opened DONE
-        //Step1. Open koel login page DONE
-        //Step2. Enter Existing username
-        //Step3. Enter Correct password
-        //Step4. Click Login button
-        //Expected result: User should be directed to the home page
+    @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
+    public static void loginValidEmailEmptyPasswordTest() {
 
-//      Added ChromeOptions argument below to fix websocket error
-        options.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver(options);
+        navigateToPage();
+        provideEmail("demo@class.com");
+        providePassword("");
+        clickSubmit();
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
-
-        WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));
-        emailField.click();
-        emailField.sendKeys("demo@class.com");
-
-        //Step3. Enter Correct password
-        WebElement passwordField = driver.findElement(By.cssSelector("[type='password'"));
-        passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
-
-        //Step4. Click Login button
-        WebElement loginField = driver.findElement(By.cssSelector("[type='submit'"));
-        loginField.click();
-
-        //Expected result: User should be directed to the home page
-        Thread.sleep(2000);
-        WebElement avatar = driver.findElement(By.className("avatar"));
-        Assert.assertTrue(avatar.isDisplayed());
-
-        driver.quit();
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
+    }
+    public static void isAvatarDisplayed() {
+        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+        Assert.assertTrue(avatarIcon.isDisplayed());
     }
 }
