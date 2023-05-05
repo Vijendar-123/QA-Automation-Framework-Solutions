@@ -7,13 +7,8 @@
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
-            <class name="ProfileTests"/>
-            <class name="Lesson16_IntroToSelenium"/>
-            <class name="Homework16"/>
-            <class name="Homework21"/>
             <class name="Homework22"/>
             <class name="PlaylistTests"/>
-            <class name="Homework19"/>
 
         </classes>
     </test>

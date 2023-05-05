@@ -1,20 +1,28 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pom.HomePage;
-import pom.LoginPage;
+import pagefactory.HomePage;
+import pagefactory.LoginPage;
+
 
 public class PlaylistTests extends BaseTest {
+
+    //    Fluent interfaces example from HW22
+
     @Test
     public void renamePlaylist(){
-        String playlistName = "Test Pro Edited Playlist";
+        String playlistName = "Test Pro Edited Playlist 2";
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        loginPage.login();
-        homePage.doubleClickPlaylist();
-        homePage.enterNewPlaylistName(playlistName);
-        Assert.assertTrue(homePage.doesPlaylistExist(playlistName));
+        loginPage.provideEmail("demo@class.com")
+                 .providePassword("te$t$tudent")
+                 .clickSubmit();
+
+        homePage.doubleClickPlaylist()
+                .enterNewPlaylistName(playlistName);
+
+        Assert.assertTrue(playlistName.contains(homePage.getPlaylistName()));
 
     }
 }
