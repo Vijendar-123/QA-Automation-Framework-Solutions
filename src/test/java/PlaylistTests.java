@@ -22,6 +22,7 @@ public class PlaylistTests extends BaseTest {
         homePage.doubleClickPlaylist()
                 .enterNewPlaylistName(playlistName);
 
+        //Changed the approach for assert from HW22
         Assert.assertTrue(playlistName.contains(homePage.getPlaylistName()));
 
     }

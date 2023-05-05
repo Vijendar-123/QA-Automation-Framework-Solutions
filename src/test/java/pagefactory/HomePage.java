@@ -15,8 +15,6 @@ public class HomePage extends BasePage {
     @FindBy(css = "[name='name']")
     WebElement playlistNameField;
 
-
-
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -33,6 +31,8 @@ public class HomePage extends BasePage {
         findElement(playlistNameField).sendKeys(Keys.ENTER);
         return this;
     }
+
+    //Changed the approach for assert from HW22
     public String getPlaylistName () {
         return findElement(firstPlaylist).getText();
     }
