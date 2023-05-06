@@ -32,7 +32,7 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    //Changed the approach for assert from HW22
+    //Changed the approach for assert
     public String getPlaylistName () {
         return findElement(firstPlaylist).getText();
     }
