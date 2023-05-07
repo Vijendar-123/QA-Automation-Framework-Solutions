@@ -37,7 +37,7 @@ public class HomePage extends BasePage {
         return findElement(firstPlaylist).getText();
     }
     public boolean isAvatarDisplayed() {
-        return avatarIcon.isDisplayed();
+        return findElement(avatarIcon).isDisplayed();
     }
 
 
