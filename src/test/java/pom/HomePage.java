@@ -3,6 +3,7 @@ package pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver) {
@@ -10,6 +11,10 @@ public class HomePage extends BasePage {
     }
     By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
     By playlistNameField = By.cssSelector("[name='name']");
+    By userAvatarIcon = By.cssSelector("img.avatar");
+    public WebElement getUserAvatar () {
+        return findElement(userAvatarIcon);
+    }
     public void doubleClickPlaylist() {
         doubleClick(firstPlaylist);
     }

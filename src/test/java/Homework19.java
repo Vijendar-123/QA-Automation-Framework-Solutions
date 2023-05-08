@@ -1,6 +1,5 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,8 +10,11 @@ public class Homework19 extends BaseTest {
     public void deletePlaylist() throws InterruptedException {
         String deletedPlaylistMsg = "Deleted playlist";
 
-        login("demo@class.com", "te$t$tudent");
-        openPlaylist();        clickDeletePlaylistBtn();
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+        openPlaylist();
+        clickDeletePlaylistBtn();
         Assert.assertTrue(getDeletedPlaylistMsg().contains(deletedPlaylistMsg));
     }
     public void openPlaylist() {
@@ -29,3 +31,6 @@ public class Homework19 extends BaseTest {
         return notificationMsg.getText();
     }
 }
+
+
+
