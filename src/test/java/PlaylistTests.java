@@ -23,7 +23,7 @@ public class PlaylistTests extends BaseTest {
                 .enterNewPlaylistName(playlistName);
 
         //Changed the approach for assert from HW22
-        Assert.assertEquals(playlistName,(homePage.getPlaylistName()));
+        Assert.assertEquals(homePage.getPlaylistName(), playlistName);
 
     }
 }
