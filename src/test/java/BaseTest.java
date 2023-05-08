@@ -94,4 +94,17 @@ public class BaseTest {
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
         avatarIcon.click();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
