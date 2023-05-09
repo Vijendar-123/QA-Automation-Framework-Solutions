@@ -21,14 +21,17 @@ public class BasePage {
         actions = new Actions(driver);
         PageFactory.initElements(driver,this);
     }
-    public WebElement findElement(WebElement locator) {
-        return wait.until(ExpectedConditions.visibilityOf(locator));
+    public WebElement findElement(WebElement webElement) {
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
-    public void click (WebElement locator) {
-        findElement(locator).click();
+    public void click (WebElement webElement) {
+        findElement(webElement).click();
     }
-    public void doubleClick (WebElement locator) {
-        actions.doubleClick(findElement(locator)).perform();
+    public void doubleClick (WebElement webElement) {
+        actions.doubleClick(findElement(webElement)).perform();
+    }
+    public void contextClick (WebElement webElement) {
+        actions.contextClick(findElement(webElement)).perform();
     }
 }
 
