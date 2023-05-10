@@ -16,16 +16,19 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class BaseTest {
 
-    public static WebDriver driver = null;
-    public static String url = null;
-    public static WebDriverWait wait = null;
+    public  WebDriver driver = null;
+    public  String url = null;
+    public  WebDriverWait wait = null;
+    public  Actions actions = null;
+    public ThreadLocal<WebDriver> threadLocal = null;
 
-    public static Actions actions = null;
 
     @DataProvider(name="IncorrectLoginData")
     public Object[][] getDataFromDataProviders() {
@@ -39,29 +42,60 @@ public class BaseTest {
 
     @BeforeSuite
     static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+//        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
-
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
-
         url = BaseURL;
+        threadLocal = new ThreadLocal<>();
+        driver = pickBrowser(System.getProperty("browser"));
+        threadLocal.set(driver);
+
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
+        getDriver().manage().window().maximize();
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         navigateToPage();
     }
+
+    public WebDriver getDriver() {
+        return threadLocal.get();
+    }
+
     @AfterMethod
     public void closeBrowser() {
-        driver.quit();
+        getDriver().quit();
+        threadLocal.remove();
     }
+
+    public WebDriver lambdaTest() throws MalformedURLException {
+
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "Firefox");
+        capabilities.setCapability("browserVersion", "107.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("user", "khaledoni01");
+        ltOptions.put("accessKey", "Zx0HIXlEJ9ERHjcH9UDCvNXRoiSm2si9VM3L6Dii3SX6W1GPF4");
+        ltOptions.put("build", "Selenium 4");
+        ltOptions.put("name", this.getClass().getName());
+        ltOptions.put("platformName", "Windows 10");
+        ltOptions.put("seCdp", true);
+        ltOptions.put("selenium_version", "4.0.0");
+        capabilities.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), capabilities);
+    }
+
+//    @AfterMethod
+//    public void closeBrowser() {
+//        driver.quit();
+//    }
     public  void navigateToPage() {
-        driver.get(url);
+        getDriver().get(url);
     }
     public void provideEmail(String email) {
         WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
@@ -125,6 +159,10 @@ public class BaseTest {
             case "grid-chrome": // gradle clean test -Dbrowser=grid-chrome
                 caps.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+
+            case "cloud": // gradle clean test -Dbrowser=cloud
+                return lambdaTest();
+
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
