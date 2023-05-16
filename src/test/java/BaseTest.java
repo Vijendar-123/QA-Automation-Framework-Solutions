@@ -95,7 +95,7 @@ public class BaseTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", "Firefox");
         capabilities.setCapability("browserVersion", "107.0");
-        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        HashMap<String, Object> ltOptions = new HashMap<>();
         ltOptions.put("user", "lambdatest.testpro");
         ltOptions.put("accessKey", "Op3WvHgSXBtuyR1TVO1wnBgA6qG34RvRcL9HWa8HLKzX4kSf5B");
         ltOptions.put("build", "Selenium 4");
