@@ -14,3 +14,5 @@ gradle*
 # gradle/wrapper/gradle-wrapper.properties
 
 /out/
+Login
+src/test/java/SlidesExamples.java
