@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-            features = {"src/test/resources/features/Login.feature"}
+            features = {"src/test/resources/features/"}
 //        glue = {"stepDefinition"} // optional
     )
 

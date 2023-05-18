@@ -6,7 +6,7 @@
     <test name="CucumberTests" preserve-order="false">
 
         <classes>
-            <class name="CucumberRunner"/>
+            <class name="BaseTest"/>
         </classes>
 
     </test>
