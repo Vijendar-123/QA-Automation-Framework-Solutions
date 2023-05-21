@@ -1,38 +1,75 @@
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagefactory.HomePage;
-import pagefactory.LoginPage;
-
+import pages.HomePage;
+import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
-
-
     @Test
-    public void LoginValidEmailPasswordTest () {
+    public static void loginEmptyEmailPasswordTest() {
+        // GIVEN
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+        // WHEN
+        loginPage.provideEmail("")
+                .providePassword("te$t$tudent")
+                .clickSubmitBtn();
 
-        loginPage.provideEmail("demo@class.com")
-                 .providePassword("te$t$tudent")
-                 .clickSubmit();
-
-        Assert.assertTrue(homePage.isAvatarDisplayed());
-
+        // THEN
+        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
 
     @Test
-    public void LoginEmptyPasswordTest () {
+    public static void loginWrongPasswordTest() {
+        // GIVEN
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
-        LoginPage loginPage = new LoginPage(getDriver());
-
+        // WHEN
         loginPage.provideEmail("demo@class.com")
-                 .providePassword("te$t$tudent")
-                 .clickSubmit();
+                .providePassword("te$t123")
+                .clickSubmitBtn();
 
+        // THEN
+        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
+    }
 
-        Assert.assertEquals(getDriver().getCurrentUrl(), url);
+    @Test
+    public static void loginEmptyPasswordTest() {
+        // GIVEN
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
+        // WHEN
+        loginPage.provideEmail("demo@class.com")
+                .providePassword("")
+                .clickSubmitBtn();
+
+        // THEN
+        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
+    }
+
+    @Test
+    public static void loginWrongEmailTest() {
+        // GIVEN
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+
+        // WHEN
+        loginPage.provideEmail("demo@class.com")
+                .providePassword("te$t$tudent")
+                .clickSubmitBtn();
+
+        // THEN
+        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
+    }
+
+    @Test
+    public void loginSucceedTest() {
+        // GIVEN
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+
+        // WHEN
+        loginPage.provideLoginSucceed();
+
+        // THEN
+        Assert.assertTrue(homePage.getUserAvatar());
     }
 }

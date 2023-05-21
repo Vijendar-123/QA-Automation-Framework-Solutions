@@ -1,190 +1,116 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.UUID;
+
+// Import necessary packages and classes for working with WebDriver,
+// browser configurations, and executing automated tests using TestNG.
 
 public class BaseTest {
 
-    public  WebDriver driver = null;
-    public  String url = null;
-    public  WebDriverWait wait = null;
-    public  Actions actions = null;
-    public ThreadLocal<WebDriver> threadLocal = null;
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
+    // THREAD_LOCAL of type ThreadLocal<WebDriver>. ThreadLocal is a mechanism that allows
+    // storing and retrieving unique variable values for each thread. In this case,
+    // ThreadLocal<WebDriver> will be used to store an instance of WebDriver
+    // associated with each thread during test execution.
 
+    private WebDriver driver = null;
+    // Here, a variable named driver of type WebDriver is declared and initialized with null.
+    // By default, driver doesn't have a reference to a WebDriver instance.
 
-    @DataProvider(name="IncorrectLoginData")
-    public Object[][] getDataFromDataProviders() {
+    private int timeSeconds = 3;
+    // This line declares a variable named timeSeconds of type int and initializes it with the value 3.
+    // This variable represents the number of seconds used in the code to define time intervals, such as element waits or timeouts.
 
-        return new Object[][] {
-                {"invalid@mail.com", "invalidPass"},
-                {"demo@class.com", ""},
-                {"", ""}
-        };
+    public static WebDriver getThreadLocal() {
+        return THREAD_LOCAL.get();
     }
-
-    @BeforeSuite
-    static void setupClass() {
-//        WebDriverManager.chromedriver().setup();
-    }
+    // This getThreadLocal() method returns the current instance of WebDriver associated with the current thread.
 
     @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL) throws MalformedURLException {
-        url = BaseURL;
-        threadLocal = new ThreadLocal<>();
-        driver = pickBrowser(System.getProperty("browser"));
-        threadLocal.set(driver);
+    @Parameters({"baseURL"})
+    public void setUpBrowser(@Optional String baseURL) throws MalformedURLException {
+        THREAD_LOCAL.set(pickBrowser(System.getProperty("browser")));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(timeSeconds));
+        getThreadLocal().get(baseURL);
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
 
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        actions = new Actions(getDriver());
-        getDriver().manage().window().maximize();
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        navigateToPage();
     }
-
-    public WebDriver getDriver() {
-        return threadLocal.get();
-    }
-
-    @AfterMethod
-    public void closeBrowser() {
-        getDriver().quit();
-        threadLocal.remove();
-    }
+    // This setUpBrowser() method is marked with the @BeforeMethod annotation from TestNG and executes before each test method.
+    // It sets up the browser, configures it, and opens the specified baseURL. It also prints information about the browser setup to the console.
 
     public WebDriver lambdaTest() throws MalformedURLException {
-
-/*      Test Pro Instructor LambdaTest account
-
-        1.) Navigate to https://accounts.lambdatest.com/login
-
-        2.) Login using Google email
-
-        Email: lambdatest.testpro@gmail.com
-        Password: testpro123
-
-        3.) Run command in IntelliJ Terminal:
-         gradle clean test -Dbrowser=cloud
-
-        4.) View the cloud automations in
-        https://accounts.lambdatest.com/dashboard
-
-
-       Configured for the Test Pro lambdatest account
-  */
-        String hubURL = "https://hub.lambdatest.com/wd/hub";
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "Firefox");
-        capabilities.setCapability("browserVersion", "107.0");
-        HashMap<String, Object> ltOptions = new HashMap<>();
-        ltOptions.put("user", "lambdatest.testpro");
-        ltOptions.put("accessKey", "Op3WvHgSXBtuyR1TVO1wnBgA6qG34RvRcL9HWa8HLKzX4kSf5B");
-        ltOptions.put("build", "Selenium 4");
-        ltOptions.put("name", this.getClass().getName());
-        ltOptions.put("platformName", "Windows 10");
-        ltOptions.put("seCdp", true);
-        ltOptions.put("selenium_version", "4.0.0");
-        capabilities.setCapability("LT:Options", ltOptions);
-
-        return new RemoteWebDriver(new URL(hubURL), capabilities);
+        String username = "";
+        String authkey = "";
+        String hub = "@hub.lambdatest.com/wd/hub";
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version", "110.0");
+        caps.setCapability("resolution", "1024x768");
+        caps.setCapability("build", "TestNG With Java");
+        caps.setCapability("name", this.getClass().getName());
+        caps.setCapability("plugin", "git-testng");
+        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
     }
+    // This lambdaTest() method returns an instance of WebDriver for remote testing using the LambdaTest service.
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.55.103:4444";//replace with your grid url
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        String gridURL = "http://10.2.127.17:4444";
 
-        switch(browser) {
-            case "firefox": // gradle clean test -Dbrowser=firefox
+        switch (browser) {
+            case "firefox":
                 WebDriverManager.firefoxdriver().setup();
-                return driver = new FirefoxDriver();
-
-            case "MicrosoftEdge": // gradle clean test -Dbrowser=MicrosoftEdge
+                FirefoxOptions optionsFirefox = new FirefoxOptions();
+                optionsFirefox.addArguments("-private");
+                return driver = new FirefoxDriver(optionsFirefox);
+            case "edge":
                 WebDriverManager.edgedriver().setup();
-                EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--remote-allow-origins=*");
-                return driver = new EdgeDriver(edgeOptions);
-
-            case "grid-edge": // gradle clean test -Dbrowser=grid-edge
-                caps.setCapability("browserName", "MicrosoftEdge");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
-            case "grid-firefox": // gradle clean test -Dbrowser=grid-firefox
-                caps.setCapability("browserName", "firefox");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
-            case "grid-chrome": // gradle clean test -Dbrowser=grid-chrome
-                caps.setCapability("browserName", "chrome");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
-            case "cloud": // gradle clean test -Dbrowser=cloud
+                return driver = new EdgeDriver();
+            case "grid-firefox":
+                capabilities.setCapability("browserName", "firefox");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "grid-edge":
+                capabilities.setCapability("browserName", "edge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "grid-chrome":
+                capabilities.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "cloud":
                 return lambdaTest();
-
             default:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--remote-allow-origins=*");
-                return driver = new ChromeDriver(chromeOptions);
+                ChromeOptions optionsChrome = new ChromeOptions();
+                optionsChrome.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+                optionsChrome.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                return driver = new ChromeDriver(optionsChrome);
+//            Addition of command line arguments to ChromeOptions:
+//            "--disable-notifications" - disables showing notifications.
+//            "--remote-allow-origins=*" - allows remote origins to send requests to the browser.
+//            "--incognito" - launches the browser in incognito mode.
+//            "--start-maximized" - launches the browser in maximized mode.
+//                    Setting an experimental option "excludeSwitches" in ChromeOptions with a value that excludes the "enable-automation" parameter.
         }
     }
-//    @AfterMethod
-//    public void closeBrowser() {
-//        driver.quit();
-//    }
-    public  void navigateToPage() {
-        getDriver().get(url);
+    // This pickBrowser() method selects and returns an instance of WebDriver depending on the passed browser parameter.
+
+    @AfterMethod
+    public void tearDown() {
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
     }
-    public void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-    public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-    public void clickSubmit() {
-        WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        submit.click();
-    }
-    public void clickSaveButton() {
-        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
-        saveButton.click();
-    }
-    public void provideProfileName(String randomName) {
-        WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        profileName.clear();
-        profileName.sendKeys(randomName);
-    }
-    public void provideCurrentPassword(String password) {
-        WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
-        currentPassword.clear();
-        currentPassword.sendKeys(password);
-    }
-    public String generateRandomName() {
-        return UUID.randomUUID().toString().replace("-", "");
-    }
-    public void clickAvatarIcon() {
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
-        avatarIcon.click();
-    }
+    // The tearDown() method is executed after each test method (@AfterMethod),
+    // and its purpose is to close the WebDriver and remove its instance from ThreadLocal.
 }
