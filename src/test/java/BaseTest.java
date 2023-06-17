@@ -4,7 +4,7 @@ import org.testng.annotations.BeforeSuite;
 public class BaseTest {
 
     @BeforeSuite
-    public void setupClass() {
+    static void setupClass() {
         WebDriverManager.chromedriver().setup();
 
     }
