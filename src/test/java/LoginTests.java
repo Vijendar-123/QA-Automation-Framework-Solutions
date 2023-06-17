@@ -31,7 +31,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
-    public static void loginValidEmailEmptyPasswordTest() {
+    public void loginValidEmailEmptyPasswordTest() {
 
         navigateToPage();
         provideEmail("demo@class.com");
