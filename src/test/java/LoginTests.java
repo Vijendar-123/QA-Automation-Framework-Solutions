@@ -31,7 +31,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
-    public static void loginValidEmailEmptyPasswordTest() {
+    public void loginValidEmailEmptyPasswordTest() {
 
         navigateToPage();
         provideEmail("demo@class.com");
@@ -40,7 +40,7 @@ public class LoginTests extends BaseTest {
 
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
     }
-    public static void isAvatarDisplayed() {
+    public void isAvatarDisplayed() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
