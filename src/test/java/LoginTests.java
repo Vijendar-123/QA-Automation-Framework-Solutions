@@ -40,7 +40,7 @@ public class LoginTests extends BaseTest {
 
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
     }
-    public static void isAvatarDisplayed() {
+    public void isAvatarDisplayed() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
