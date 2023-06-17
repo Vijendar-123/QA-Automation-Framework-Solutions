@@ -18,7 +18,7 @@ public class BaseTest {
     public static String url = "https://bbb.testpro.io/";
 
     @BeforeSuite
-    public void setupClass() {
+    static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 
@@ -42,46 +42,46 @@ public class BaseTest {
         driver.get(url);
     }
 
-    public void provideEmail(String email) {
+    public static void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys(email);
     }
 
-    public void providePassword(String password) {
+    public static void providePassword(String password) {
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
-    public void clickSubmit() {
+    public static void clickSubmit() {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
 
     }
 
-    public void clickSaveButton() {
+    public static void clickSaveButton() {
         WebElement saveButton = driver.findElement(By.cssSelector("button.btn-submit"));
         saveButton.click();
     }
 
-    public void provideProfileName(String randomName) {
+    public static void provideProfileName(String randomName) {
         WebElement profileName = driver.findElement(By.cssSelector("[name='name']"));
         profileName.clear();
         profileName.sendKeys(randomName);
     }
 
-    public void provideCurrentPassword(String password) {
+    public static void provideCurrentPassword(String password) {
         WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password']"));
         currentPassword.clear();
         currentPassword.sendKeys(password);
     }
 
-    public String generateRandomName() {
+    public static String generateRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
-    public void clickAvatarIcon() {
+    public static void clickAvatarIcon() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
         avatarIcon.click();
     }
