@@ -18,8 +18,6 @@ public class BaseTest {
     public static String url = null;
     public static WebDriverWait wait = null;
 
-    public static Actions actions = null;
-
     @DataProvider(name="IncorrectLoginData")
     public Object[][] getDataFromDataProviders() {
 
@@ -47,8 +45,6 @@ public class BaseTest {
         driver.manage().window().maximize();
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
-
         url = BaseURL;
         navigateToPage();
     }
