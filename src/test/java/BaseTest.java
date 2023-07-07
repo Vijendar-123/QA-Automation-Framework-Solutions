@@ -91,7 +91,7 @@ public class BaseTest {
         return UUID.randomUUID().toString().replace("-", "");
     }
     public void clickAvatarIcon() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
+        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
         avatarIcon.click();
     }
 }
