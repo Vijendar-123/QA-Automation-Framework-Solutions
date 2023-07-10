@@ -16,7 +16,7 @@ public class LoginTests extends BaseTest {
         providePassword(password);
         clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
     }
 
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
@@ -37,7 +37,7 @@ public class LoginTests extends BaseTest {
         providePassword("");
         clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url); //https://bbb.testpro.io/
+        Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
     }
     public static void isAvatarDisplayed() {
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
