@@ -1,75 +1,57 @@
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.LoginPage;
+import pagefactory.HomePage;
+import pagefactory.LoginPage;
+
 
 public class LoginTests extends BaseTest {
+
+    //Fluent interfaces example
     @Test
-    public static void loginEmptyEmailPasswordTest() {
-        // GIVEN
-        LoginPage loginPage = new LoginPage(getThreadLocal());
+    public void loginInvalidEmailValidPasswordTest(){
 
-        // WHEN
-        loginPage.provideEmail("")
-                .providePassword("te$t$tudent")
-                .clickSubmitBtn();
+        LoginPage loginPage = new LoginPage(getDriver());
 
-        // THEN
-        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
+        loginPage.provideEmail("invalid@email.com")
+                 .providePassword("te$t$tudent")
+                 .clickSubmit();
+
+        Assert.assertEquals(getDriver().getCurrentUrl(), url); //https://qa.koel.app/
     }
-
     @Test
-    public static void loginWrongPasswordTest() {
-        // GIVEN
-        LoginPage loginPage = new LoginPage(getThreadLocal());
+    public void loginValidEmailPasswordTest () {
 
-        // WHEN
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+
         loginPage.provideEmail("demo@class.com")
-                .providePassword("te$t123")
-                .clickSubmitBtn();
+                 .providePassword("te$t$tudent")
+                 .clickSubmit();
 
-        // THEN
-        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
+        Assert.assertTrue(homePage.isAvatarDisplayed());
     }
 
     @Test
-    public static void loginEmptyPasswordTest() {
-        // GIVEN
-        LoginPage loginPage = new LoginPage(getThreadLocal());
+    public void loginValidEmailEmptyPasswordTest() {
 
-        // WHEN
+        LoginPage loginPage = new LoginPage(getDriver());
+
         loginPage.provideEmail("demo@class.com")
-                .providePassword("")
-                .clickSubmitBtn();
+                 .providePassword("")
+                 .clickSubmit();
 
-        // THEN
-        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
+        Assert.assertEquals(getDriver().getCurrentUrl(), url); //https://qa.koel.app/
     }
 
+    //    OR
     @Test
-    public static void loginWrongEmailTest() {
-        // GIVEN
-        LoginPage loginPage = new LoginPage(getThreadLocal());
+    public void loginEmptyEmailPasswordTest() {
 
-        // WHEN
-        loginPage.provideEmail("demo@class.com")
-                .providePassword("te$t$tudent")
-                .clickSubmitBtn();
+        LoginPage loginPage = new LoginPage(getDriver());
 
-        // THEN
-        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
-    }
+        loginPage.provideEmail("").providePassword("te$t$tudent").clickSubmit();
 
-    @Test
-    public void loginSucceedTest() {
-        // GIVEN
-        LoginPage loginPage = new LoginPage(getThreadLocal());
-        HomePage homePage = new HomePage(getThreadLocal());
-
-        // WHEN
-        loginPage.provideLoginSucceed();
-
-        // THEN
-        Assert.assertTrue(homePage.getUserAvatar());
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
 }
