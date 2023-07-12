@@ -79,36 +79,29 @@ public class BaseTest {
     // This lambdaTest() method returns an instance of WebDriver for remote testing using the LambdaTest service.
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+        DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://10.2.127.17:4444";
 
         switch (browser) {
-
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
-
-            case "edge":
+            case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote-allow-origins=*");
-                return driver = new EdgeDriver();
-
+                return driver = new EdgeDriver(edgeOptions);
             case "grid-firefox":
-                capabilities.setCapability("browserName", "firefox");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
-
+                caps.setCapability("browserName", "firefox");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
             case "grid-edge":
-                capabilities.setCapability("browserName", "edge");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
-
+                caps.setCapability("browserName", "MicrosoftEdge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
             case "grid-chrome":
-                capabilities.setCapability("browserName", "chrome");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
-
+                caps.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
             case "cloud":
                 return lambdaTest();
-
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -116,5 +109,6 @@ public class BaseTest {
                 return driver = new ChromeDriver(chromeOptions);
         }
     }
+
     // This pickBrowser() method selects and returns an instance of WebDriver depending on the passed browser parameter.
 }
