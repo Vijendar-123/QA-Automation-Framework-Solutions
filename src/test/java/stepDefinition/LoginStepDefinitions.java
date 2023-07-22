@@ -36,7 +36,7 @@ public class LoginStepDefinitions {
     }
     @Given("I open Login page")
     public void openLoginPage() {
-        driver.get("https://bbb.testpro.io");
+        driver.get("https://qa.koel.app/");
     }
     @When("I enter email {string}")
     public void i_enter_email(String email) {
