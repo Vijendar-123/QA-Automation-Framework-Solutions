@@ -19,7 +19,6 @@ public class HomePage extends BasePage {
         doubleClick(firstPlaylist);
     }
     public void enterNewPlaylistName(String playlistName) {
-        findElement(playlistNameField).sendKeys(playlistName);
         findElement(playlistNameField).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.BACK_SPACE));
         findElement(playlistNameField).sendKeys(playlistName);
         findElement(playlistNameField).sendKeys(Keys.ENTER);
