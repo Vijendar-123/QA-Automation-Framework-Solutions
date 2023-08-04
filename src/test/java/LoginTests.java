@@ -10,7 +10,7 @@ import java.time.Duration;
 public class LoginTests extends BaseTest {
     static ChromeOptions options = new ChromeOptions();
     @Test
-    public void loginInvalidEmailValidPasswordTest(){
+    public void loginInvalidEmailValidPassword(){
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         options.addArguments("--remote-allow-origins=*");
@@ -42,7 +42,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginValidEmailPasswordTest(){
+    public void loginValidEmailPassword(){
 //      Added ChromeOptions argument below to fix websocket error
         options.addArguments("--remote-allow-origins=*");
 
@@ -72,7 +72,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginValidEmailEmptyPasswordTest() {
+    public void loginValidEmailEmptyPassword() {
 //      Added ChromeOptions argument below to fix websocket error
         options.addArguments("--remote-allow-origins=*");
 

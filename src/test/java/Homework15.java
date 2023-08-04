@@ -12,7 +12,7 @@ public class Homework15 extends BaseTest {
 
     static ChromeOptions options = new ChromeOptions();
     @Test
-    public void LoginEmptyEmailPasswordTest () throws InterruptedException {
+    public void LoginEmptyEmailPassword() throws InterruptedException {
         // Simple comment
 
 //      Added ChromeOptions argument below to fix websocket error

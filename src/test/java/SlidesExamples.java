@@ -11,7 +11,7 @@ import java.time.Duration;
 public class SlidesExamples {
 
     @Test
-    public void successfulLoginTest(){
+    public void successfulLogin(){
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -43,7 +43,7 @@ public class SlidesExamples {
     }
 
     @Test
-    public void loginNotExistingEmailTest(){
+    public void loginNotExistingEmail(){
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -77,7 +77,7 @@ public class SlidesExamples {
     }
 
     @Test
-    public void loginEmptyPasswordTest() {
+    public void loginEmptyPassword() {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
