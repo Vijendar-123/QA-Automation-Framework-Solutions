@@ -9,7 +9,7 @@ public class LoginTests extends BaseTest {
 
     //Fluent interfaces example
     @Test
-    public void loginInvalidEmailValidPasswordTest(){
+    public void loginInvalidEmailValidPassword(){
 
         LoginPage loginPage = new LoginPage(getDriver());
 
@@ -20,7 +20,7 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(getDriver().getCurrentUrl(), url); //https://qa.koel.app/
     }
     @Test
-    public void loginValidEmailPasswordTest () {
+    public void loginValidEmailPassword () {
 
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
@@ -33,7 +33,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginValidEmailEmptyPasswordTest() {
+    public void loginValidEmailEmptyPassword() {
 
         LoginPage loginPage = new LoginPage(getDriver());
 
@@ -46,7 +46,7 @@ public class LoginTests extends BaseTest {
 
     //    OR
     @Test
-    public void loginEmptyEmailPasswordTest() {
+    public void loginEmptyEmailPassword() {
 
         LoginPage loginPage = new LoginPage(getDriver());
 
