@@ -9,7 +9,7 @@ import pom.LoginPage;
 public class LoginTests extends BaseTest {
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
-    public void loginInvalidEmailValidPasswordTest(String username, String password){
+    public void loginInvalidEmailValidPassword(String username, String password){
 
         provideEmail(username);
         providePassword(password);
@@ -19,7 +19,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
-    public void loginValidEmailPasswordTest(){
+    public void loginValidEmailPassword(){
 
         navigateToPage();
         provideEmail("demo@class.com");
@@ -29,7 +29,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
-    public void loginValidEmailEmptyPasswordTest() {
+    public void loginValidEmailEmptyPassword() {
 
         navigateToPage();
         provideEmail("demo@class.com");
@@ -45,7 +45,7 @@ public class LoginTests extends BaseTest {
 
     //Page Object Model example
     @Test
-    public void LoginValidEmailPasswordTest () {
+    public void LoginValidEmailPassword() {
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
