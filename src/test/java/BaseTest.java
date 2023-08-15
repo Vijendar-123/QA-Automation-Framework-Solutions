@@ -43,14 +43,12 @@ public class BaseTest {
 
     public static void provideEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.click();//not needed
         emailField.clear();
         emailField.sendKeys(email);
     }
 
     public static void providePassword(String password) {
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.click();//not needed
         passwordField.clear();
         passwordField.sendKeys(password);
     }
