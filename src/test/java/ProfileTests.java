@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 public class ProfileTests extends BaseTest {
     @Test
-    public static void changeProfileNameTest () throws InterruptedException {
+    public void changeProfileName() throws InterruptedException {
 
         navigateToPage();
 
@@ -26,3 +26,4 @@ public class ProfileTests extends BaseTest {
         Assert.assertEquals(actualProfileName.getText(), randomName);
     }
 }
+
