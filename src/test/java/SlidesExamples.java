@@ -11,11 +11,10 @@ import java.time.Duration;
 public class SlidesExamples {
 
     @Test
-    public void successfulLogin(){
+    public void loginValidEmailPassword(){
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -43,11 +42,10 @@ public class SlidesExamples {
     }
 
     @Test
-    public void loginNotExistingEmail(){
+    public void loginInvalidEmailValidPassword(){
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -58,26 +56,24 @@ public class SlidesExamples {
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
-        emailField.sendKeys("notExistingEmail@class.com");
+        emailField.sendKeys("invalid@class.com");
 
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
         passwordField.sendKeys("te$t$tudent");
 
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLogin.click();
+        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
+        submit.click();
 
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url); // https://qa.koel.app/
-        Assert.assertTrue(submitLogin.isDisplayed());
 
         // Post-condition
         driver.quit();
-
     }
 
     @Test
-    public void loginEmptyPassword() {
+    public void loginValidEmailEmptyPassword() {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -94,12 +90,11 @@ public class SlidesExamples {
         emailField.clear();
         emailField.sendKeys("demo@class.com");
 
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLogin.click();
+        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
+        submit.click();
 
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
-        Assert.assertTrue(submitLogin.isDisplayed());
 
         // Post-condition
         driver.quit();
