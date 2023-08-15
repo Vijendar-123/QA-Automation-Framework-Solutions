@@ -13,7 +13,6 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailPassword(){
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
@@ -45,7 +44,6 @@ public class LoginTests extends BaseTest {
     public void loginInvalidEmailValidPassword(){
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
@@ -77,7 +75,6 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailEmptyPassword() {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);

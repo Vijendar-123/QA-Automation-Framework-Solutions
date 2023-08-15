@@ -9,7 +9,6 @@ import java.time.Duration;
 
 public class Homework15 extends BaseTest {
 
-
     @Test
     public void LoginEmptyEmailPassword() throws InterruptedException {
 
@@ -28,3 +27,5 @@ public class Homework15 extends BaseTest {
 
     }
 }
+
+
