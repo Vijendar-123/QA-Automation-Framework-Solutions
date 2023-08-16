@@ -13,8 +13,7 @@ public class Homework17 extends BaseTest {
             provideEmail("demo@class.com");
             providePassword("te$t$tudent");
             clickSubmit();
-            Thread.sleep(2000);
-            searchSong("Pluto");
+            searchSong("Kesta");
             clickViewAllBtn();
             selectFirstSongResult();
             clickAddToBtn();
@@ -43,14 +42,17 @@ public class Homework17 extends BaseTest {
             Thread.sleep(2000);
         }
         public void choosePlaylist () throws InterruptedException {
-//            We created a playlist named "Test Pro Playlist"
-            WebElement playlist = driver.findElement(By.xpath(String.format("//section[@id='songResultsWrapper']//li[contains(text(),'Test Pro Playlist')]")));
+            //We created a playlist named "Test Pro Playlist"
+            WebElement playlist = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Test Pro Playlist')]"));
             playlist.click();
             Thread.sleep(2000);
         }
         public String getNotificationText() {
             WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
-            System.out.println(notification.getText()+ "---Text");
+            System.out.println(notification.getText());
             return notification.getText();
         }
     }
+
+
+
