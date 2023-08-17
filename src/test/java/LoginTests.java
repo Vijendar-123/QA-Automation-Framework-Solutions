@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-    static ChromeOptions options = new ChromeOptions();
+    ChromeOptions options = new ChromeOptions();
     @Test
     public void loginValidEmailPassword(){
         // Pre-condition
