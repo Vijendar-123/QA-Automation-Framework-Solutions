@@ -8,14 +8,14 @@ public class Homework19 extends BaseTest {
     //Prerequisite - empty playlist to delete
     @Test
     public void deletePlaylist() throws InterruptedException {
-        String deletedPlaylistMsg = "Deleted playlist";
+        String deletedPlaylistMsg = "Deleted playlist \"TestPro Playlist.\"";
 
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
         openPlaylist();
         clickDeletePlaylistBtn();
-        Assert.assertTrue(getDeletedPlaylistMsg().contains(deletedPlaylistMsg));
+        Assert.assertEquals(getDeletedPlaylistMsg(), deletedPlaylistMsg);
     }
     public void openPlaylist() {
         WebElement emptyPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
