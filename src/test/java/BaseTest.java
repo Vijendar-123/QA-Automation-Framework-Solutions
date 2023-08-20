@@ -14,12 +14,12 @@ import java.util.UUID;
 
 public class BaseTest {
 
-    public static WebDriver driver = null;
-    public static String url = null;
-    public static WebDriverWait wait = null;
+    public WebDriver driver = null;
+    public  String url = null;
+    public WebDriverWait wait = null;
 
     @DataProvider(name="IncorrectLoginData")
-    public Object[][] getDataFromDataProviders() {
+    public static Object[][] getDataFromDataProviders() {
 
         return new Object[][] {
                 {"invalid@mail.com", "invalidPass"},
