@@ -11,18 +11,27 @@ import java.util.UUID;
 
 public class BaseTest {
 
-    public static WebDriver driver = null;
-    public static String url = null;
+    public WebDriver driver = null;
+    public String url = null;
 
     @DataProvider(name="IncorrectLoginData")
-    public Object[][] getDataFromDataProviders() {
-
+    public static Object[][] getDataFromDataProviders() {
         return new Object[][] {
-                {"invalid@mail.com", "invalidPass"},
+                {"invalid@mail.com", "invalidPassword"},
                 {"demo@class.com", ""},
                 {"", ""}
         };
     }
+
+    //without static keyword
+//    @DataProvider(name="IncorrectLoginData")
+//    public Object[][] getDataFromDataProviders() {
+//        return new Object[][] {
+//                {"invalid@mail.com", "invalidPassword"},
+//                {"demo@class.com", ""},
+//                {"", ""}
+//        };
+//    }
 
     @BeforeSuite
     static void setupClass() {
@@ -32,7 +41,7 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) {
-        //      Added ChromeOptions argument below to fix websocket error
+        //Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
