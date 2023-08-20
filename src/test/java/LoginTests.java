@@ -36,8 +36,5 @@ public class LoginTests extends BaseTest {
 
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
     }
-    public void isAvatarDisplayed() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-    }
+
 }
