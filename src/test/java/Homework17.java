@@ -7,7 +7,7 @@ public class Homework17 extends BaseTest {
         @Test
         public void addSongToPlaylist() throws InterruptedException {
 
-            String newSongAddedNotificationMsg = "Added 1 song into \"Test Pro Playlist.\"";
+            String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
 
             navigateToPage();
             provideEmail("demo@class.com");
@@ -19,7 +19,7 @@ public class Homework17 extends BaseTest {
             selectFirstSongResult();
             clickAddToBtn();
             choosePlaylist();
-            Assert.assertEquals(getNotificationMsg(), newSongAddedNotificationMsg);
+            Assert.assertEquals(getAddToPlaylistSuccessMsg(), expectedSongAddedMessage);
         }
 
         public void searchSong(String name) throws InterruptedException {
@@ -48,7 +48,7 @@ public class Homework17 extends BaseTest {
             playlist.click();
             Thread.sleep(2000);
         }
-        public String getNotificationMsg() {
+        public String getAddToPlaylistSuccessMsg() {
             WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
             return notification.getText();
         }
