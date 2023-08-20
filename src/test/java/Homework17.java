@@ -7,18 +7,19 @@ public class Homework17 extends BaseTest {
         @Test
         public void addSongToPlaylist() throws InterruptedException {
 
-            String newSongAddedNotificationText = "Added 1 song into";
+            String newSongAddedNotificationText = "Added 1 song into \"Test Pro Playlist.\"";
 
             navigateToPage();
             provideEmail("demo@class.com");
             providePassword("te$t$tudent");
             clickSubmit();
-            searchSong("Kesta");
+            Thread.sleep(2000);
+            searchSong("Ketsa");
             clickViewAllBtn();
             selectFirstSongResult();
             clickAddToBtn();
             choosePlaylist();
-            Assert.assertTrue(getNotificationText().contains(newSongAddedNotificationText));
+            Assert.assertEquals(getNotificationText(), newSongAddedNotificationText);
         }
 
         public void searchSong(String name) throws InterruptedException {
@@ -49,7 +50,6 @@ public class Homework17 extends BaseTest {
         }
         public String getNotificationText() {
             WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
-            System.out.println(notification.getText());
             return notification.getText();
         }
     }
