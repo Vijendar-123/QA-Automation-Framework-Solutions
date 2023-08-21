@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 public class ProfileTests extends BaseTest {
     @Test
-    public void changeProfileNameTest () throws InterruptedException {
+    public void changeProfileName () throws InterruptedException {
 
 //        navigateToPage();
 
