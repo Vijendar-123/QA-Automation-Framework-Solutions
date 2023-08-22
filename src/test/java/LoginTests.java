@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
-    public void loginInvalidEmailValidPasswordTest(String username, String password){
+    public void loginInvalidEmailValidPassword(String username, String password){
 
         provideEmail(username);
         providePassword(password);
