@@ -12,6 +12,7 @@ public class HomePage extends BasePage {
     By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
     By playlistNameField = By.cssSelector("[name='name']");
     By userAvatarIcon = By.cssSelector("img.avatar");
+    By renamePlaylistSuccessMsg = By.cssSelector("div.success.show");
     public WebElement getUserAvatar () {
         return findElement(userAvatarIcon);
     }
@@ -23,8 +24,7 @@ public class HomePage extends BasePage {
         findElement(playlistNameField).sendKeys(playlistName);
         findElement(playlistNameField).sendKeys(Keys.ENTER);
     }
-    public boolean doesPlaylistExist(String playlistName) {
-        By newPlaylist = By.xpath("//a[text()='"+playlistName+"']");
-        return findElement(newPlaylist).isDisplayed();
+    public String getRenamePlaylistSuccessMsg() {
+       return findElement(renamePlaylistSuccessMsg).getText();
     }
 }
