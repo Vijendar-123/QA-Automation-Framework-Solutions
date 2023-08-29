@@ -8,15 +8,19 @@ import org.testng.annotations.Test;
 public class Homework21 extends BaseTest{
 
     //Prerequisite - at least one user-created playlist
-    String newPlaylistName = "Test Pro Edited Playlist";
+    String newPlaylistName = "Sample Edited Playlist";
+
     @Test
     public void renamePlaylist(){
+
+        String updatedPlaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
+
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
         doubleClickPlaylist();
         enterNewPlaylistName();
-        Assert.assertTrue(doesPlaylistExist());
+        Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatedPlaylistMsg);
     }
     public void doubleClickPlaylist() {
         WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
@@ -31,9 +35,9 @@ public class Homework21 extends BaseTest{
         playlistInputField.sendKeys(newPlaylistName);
         playlistInputField.sendKeys(Keys.ENTER);
     }
-    public boolean doesPlaylistExist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='"+newPlaylistName+"']")));
-        return playlistElement.isDisplayed();
+    public String getRenamePlaylistSuccessMsg() {
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        return notification.getText();
     }
 }
 
