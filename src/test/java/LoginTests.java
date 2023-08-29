@@ -10,7 +10,7 @@ import pagefactory.LoginPage;
 public class LoginTests extends BaseTest {
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
-    public void loginInvalidEmailValidPasswordTest(String username, String password){
+    public void loginInvalidEmailValidPassword(String username, String password){
 
         provideEmail(username);
         providePassword(password);
@@ -19,18 +19,8 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
     }
 
-    @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
-    public void loginValidEmailPasswordTest(){
-
-        navigateToPage();
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-        isAvatarDisplayed();
-    }
-
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
-    public void loginValidEmailEmptyPasswordTest() {
+    public void loginValidEmailEmptyPassword() {
 
         navigateToPage();
         provideEmail("demo@class.com");
@@ -47,21 +37,19 @@ public class LoginTests extends BaseTest {
 
     //Fluent interfaces example
     @Test
-    public void LoginValidEmailPasswordTest () {
+    public void loginValidEmailPassword () {
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        loginPage.provideEmail("demo@class.com")
-                 .providePassword("te$t$tudent")
-                 .clickSubmit();
+        loginPage.provideEmail("demo@class.com").providePassword("te$t$tudent").clickSubmit();
 
         Assert.assertTrue(homePage.isAvatarDisplayed());
     }
 
     //    OR
     @Test
-    public void LoginEmptyEmailPasswordTest() {
+    public void loginEmptyEmailPassword() {
 
         LoginPage loginPage = new LoginPage(driver);
 
