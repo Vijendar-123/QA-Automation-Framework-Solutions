@@ -10,7 +10,7 @@ public class PlaylistTests extends BaseTest {
 
     @Test
     public void renamePlaylist(){
-        String playlistName = "Test Pro Edited Playlist 2";
+        String playlistName = "Test Pro Edited Playlist 10";
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
