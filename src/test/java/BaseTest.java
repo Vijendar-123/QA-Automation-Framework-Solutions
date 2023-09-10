@@ -21,23 +21,16 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public static WebDriver driver = null;
-    public static String url = null;
-    public static WebDriverWait wait = null;
-    public static Actions actions = null;
-
+    public WebDriver driver = null;
+    public String url = null;
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void setUpBrowser(String BaseURL) throws MalformedURLException {
-
         threadDriver.set(pickBrowser(System.getProperty("browser")));
-
-        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(10));
-        actions = new Actions(getDriver());
-
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
         url = BaseURL;
         navigateToPage();
     }
