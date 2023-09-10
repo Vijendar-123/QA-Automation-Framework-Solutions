@@ -42,7 +42,7 @@ public class SlidesExamples {
     }
 
     @Test
-    public void loginInvalidEmailValidPassword(){
+    public void loginInvalidEmailValidPassword() throws InterruptedException {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -65,6 +65,7 @@ public class SlidesExamples {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
 
+        Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url); // https://qa.koel.app/
 
@@ -73,11 +74,10 @@ public class SlidesExamples {
     }
 
     @Test
-    public void loginValidEmailEmptyPassword() {
+    public void loginValidEmailEmptyPassword() throws InterruptedException {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-notifications");
 
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -93,19 +93,12 @@ public class SlidesExamples {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
 
+        Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
 
         // Post-condition
         driver.quit();
     }
-
-
-
-
-
-
-
-
 
 }

@@ -41,7 +41,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginInvalidEmailValidPassword(){
+    public void loginInvalidEmailValidPassword() throws InterruptedException {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         options.addArguments("--remote-allow-origins=*");
@@ -64,6 +64,7 @@ public class LoginTests extends BaseTest {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
 
+        Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url); // https://qa.koel.app/
 
@@ -72,7 +73,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginValidEmailEmptyPassword() {
+    public void loginValidEmailEmptyPassword() throws InterruptedException {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         options.addArguments("--remote-allow-origins=*");
@@ -91,6 +92,8 @@ public class LoginTests extends BaseTest {
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
 
+
+        Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
 
