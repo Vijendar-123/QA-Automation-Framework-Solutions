@@ -7,12 +7,13 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
-    public void loginInvalidEmailValidPassword(String username, String password){
+    public void loginInvalidEmailValidPassword(String username, String password) throws InterruptedException {
 
         provideEmail(username);
         providePassword(password);
         clickSubmit();
 
+        Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
@@ -38,13 +39,14 @@ public class LoginTests extends BaseTest {
     }
 
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
-    public void loginValidEmailEmptyPassword() {
+    public void loginValidEmailEmptyPassword() throws InterruptedException {
 
         navigateToPage();
         provideEmail("demo@class.com");
         providePassword("");
         clickSubmit();
 
+        Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
     }
     public void isAvatarDisplayed() {
