@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 // Import necessary packages and classes for working with WebDriver,
 // browser configurations, and executing automated tests using TestNG.
@@ -55,19 +56,41 @@ public class BaseTest {
     // and its purpose is to close the WebDriver and remove its instance from ThreadLocal.
 
     public WebDriver lambdaTest() throws MalformedURLException {
-        String username = "";
-        String authkey = "";
-        String hub = "@hub.lambdatest.com/wd/hub";
 
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("platform", "Windows 10");
-        caps.setCapability("browserName", "Chrome");
-        caps.setCapability("version", "110.0");
-        caps.setCapability("resolution", "1024x768");
-        caps.setCapability("build", "TestNG With Java");
-        caps.setCapability("name", this.getClass().getName());
-        caps.setCapability("plugin", "git-testng");
-        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
+/*      Test Pro Instructor LambdaTest account
+
+        1.) Navigate to https://accounts.lambdatest.com/login
+
+        2.) Login using Google email
+
+        Email: lambdatest.testpro@gmail.com
+        Password: testpro123
+
+        3.) Run command in IntelliJ Terminal:
+         gradle clean test -Dbrowser=cloud
+
+        4.) View the cloud automations in
+        https://accounts.lambdatest.com/dashboard
+
+
+       Configured for the Test Pro lambdatest account
+  */
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "Firefox");
+        capabilities.setCapability("browserVersion", "107.0");
+        HashMap<String, Object> ltOptions = new HashMap<>();
+        ltOptions.put("user", "lambdatest.testpro");
+        ltOptions.put("accessKey", "Op3WvHgSXBtuyR1TVO1wnBgA6qG34RvRcL9HWa8HLKzX4kSf5B");
+        ltOptions.put("build", "Selenium 4");
+        ltOptions.put("name", this.getClass().getName());
+        ltOptions.put("platformName", "Windows 10");
+        ltOptions.put("seCdp", true);
+        ltOptions.put("selenium_version", "4.0.0");
+        capabilities.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), capabilities);
     }
     // This lambdaTest() method returns an instance of WebDriver for remote testing using the LambdaTest service.
 
