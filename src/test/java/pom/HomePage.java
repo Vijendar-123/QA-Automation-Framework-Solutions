@@ -13,9 +13,6 @@ public class HomePage extends BasePage {
     By playlistNameField = By.cssSelector("[name='name']");
     By userAvatarIcon = By.cssSelector("img.avatar");
     By renamePlaylistSuccessMsg = By.cssSelector("div.success.show");
-    public WebElement getUserAvatar () {
-        return findElement(userAvatarIcon);
-    }
     public void doubleClickPlaylist() {
         doubleClick(firstPlaylist);
     }
