@@ -7,9 +7,9 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
-    public void loginInvalidEmailValidPassword(String username, String password) throws InterruptedException {
+    public void loginInvalidEmailValidPassword(String email, String password) throws InterruptedException {
 
-        provideEmail(username);
+        provideEmail(email);
         providePassword(password);
         clickSubmit();
 
@@ -18,16 +18,15 @@ public class LoginTests extends BaseTest {
     }
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class)
-    public void loginEmptyEmailPassword(String username, String password){
-        provideEmail(username);
+    public void loginEmptyEmailPassword(String email, String password) throws InterruptedException {
+        provideEmail(email);
         providePassword(password);
         clickSubmit();
 
+        Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
-
-
-
+    
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
     public void loginValidEmailPassword(){
 
