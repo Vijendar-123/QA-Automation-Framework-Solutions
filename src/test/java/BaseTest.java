@@ -29,7 +29,6 @@ public class BaseTest {
                 {"", ""}
         };
     }
-
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -73,25 +72,5 @@ public class BaseTest {
         WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submit.click();
     }
-    public void clickSaveButton() {
-        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
-        saveButton.click();
-    }
-    public void provideProfileName(String randomName) {
-        WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        profileName.clear();
-        profileName.sendKeys(randomName);
-    }
-    public void provideCurrentPassword(String password) {
-        WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
-        currentPassword.clear();
-        currentPassword.sendKeys(password);
-    }
-    public String generateRandomName() {
-        return UUID.randomUUID().toString().replace("-", "");
-    }
-    public void clickAvatarIcon() {
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
-        avatarIcon.click();
-    }
+
 }
