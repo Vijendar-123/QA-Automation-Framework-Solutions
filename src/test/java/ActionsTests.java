@@ -36,6 +36,20 @@ public class ActionsTests extends BaseTest {
         //verifies if the playlist details song count is equal to the retrieved number of songs
     }
 
+    // Test #3 - Mouse Hover
+    @Test
+    public void hoverOverPlayButton()   {
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+        Assert.assertTrue(hoverPlay().isDisplayed());
+    }
+    public WebElement hoverPlay()   {
+        WebElement play = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        actions.moveToElement(play).perform();
+        return wait.until(ExpectedConditions.visibilityOf(play));
+    }
+
     public void chooseAllSongsList() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
     }
