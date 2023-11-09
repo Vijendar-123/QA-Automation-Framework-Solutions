@@ -24,7 +24,6 @@ public class BaseTest {
     public static WebDriver driver = null;
     public static String url = null;
     public static WebDriverWait wait = null;
-
     public static Actions actions = null;
 
     @DataProvider(name="IncorrectLoginData")
@@ -99,10 +98,11 @@ public class BaseTest {
         avatarIcon.click();
     }
 
-    public WebDriver pickBrowser(String browser) throws MalformedURLException {
+    public static WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.55.103:4444";//replace with your grid url
-        //java -jar selenium-server-4.9.0.jar standalone
+        String gridURL = "http://192.168.55.100:4444";//replace with your grid url
+
+        //java -jar selenium-server-4.15.0.jar standalone --selenium-manager true
 
         switch(browser) {
             case "firefox": // gradle clean test -Dbrowser=firefox
