@@ -22,21 +22,6 @@ public class HomePage extends BasePage {
         click(profileIcon);
         return this;
     }
-    public HomePage doubleClickPlaylist() {
-        doubleClick(firstPlaylist);
-        return this;
-    }
-    public HomePage enterNewPlaylistName(String playlistName) {
-        findElement(playlistNameField).sendKeys(playlistName);
-        findElement(playlistNameField).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.BACK_SPACE));
-        findElement(playlistNameField).sendKeys(playlistName);
-        findElement(playlistNameField).sendKeys(Keys.ENTER);
-        findElement(popUpNotification);//wait for the popup notification for successful updating of the playlist name
-        return this;
-    }
-    public String getPlaylistName () {
-        return findElement(firstPlaylist).getText();
-    }
     public boolean isAvatarDisplayed() {
         return findElement(avatarIcon).isDisplayed();
     }
