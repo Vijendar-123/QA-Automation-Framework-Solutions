@@ -8,7 +8,7 @@ public class ProfileTests extends BaseTest {
 
         navigateToPage();
 
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
 

@@ -38,7 +38,7 @@ public class SlidesExamples_1 extends BaseTest {
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("demo@testpro.io");
 
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();

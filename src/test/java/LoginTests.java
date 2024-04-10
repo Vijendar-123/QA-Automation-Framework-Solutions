@@ -9,7 +9,7 @@ public class LoginTests extends BaseTest {
     public void loginInvalidEmailValidPassword(){
 
         navigateToPage();
-        provideEmail("invalid@class.com");
+        provideEmail("invalid@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
 
@@ -20,7 +20,7 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailPassword(){
 
         navigateToPage();
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
         isAvatarDisplayed();
@@ -30,7 +30,7 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailEmptyPassword() {
 
         navigateToPage();
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("");
         clickSubmit();
 

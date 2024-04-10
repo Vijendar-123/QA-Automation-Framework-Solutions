@@ -7,7 +7,7 @@ public class SlidesExamples_4 extends BaseTest{
     @Test
     public void loginValidEmailPassword(){
         navigateToPage();
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
 
@@ -17,7 +17,7 @@ public class SlidesExamples_4 extends BaseTest{
     @Test
     public void loginInvalidEmailPassword(){
         navigateToPage();
-        provideEmail("invalid@class.com");
+        provideEmail("invalid@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
 
