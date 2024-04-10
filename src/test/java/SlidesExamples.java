@@ -7,7 +7,7 @@ public class SlidesExamples extends BaseTest{
     public void loginValidEmailPassword(){
 
         navigateToPage();
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
         isAvatarDisplayed();
@@ -16,7 +16,7 @@ public class SlidesExamples extends BaseTest{
     public void loginInvalidEmailValidPassword() throws InterruptedException {
 
         navigateToPage();
-        provideEmail("invalid@class.com");
+        provideEmail("invalid@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
         Thread.sleep(2000);
@@ -26,7 +26,7 @@ public class SlidesExamples extends BaseTest{
     public void loginValidEmailEmptyPassword() throws InterruptedException {
 
         navigateToPage();
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("");
         clickSubmit();
         Thread.sleep(2000);
