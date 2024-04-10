@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
 
         LoginPage loginPage = new LoginPage(getDriver());
 
-        loginPage.provideEmail("invalid@email.com")
+        loginPage.provideEmail("invalid@testpro.io")
                  .providePassword("te$t$tudent")
                  .clickSubmit();
 
@@ -25,7 +25,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
-        loginPage.provideEmail("demo@class.com")
+        loginPage.provideEmail("demo@testpro.io")
                  .providePassword("te$t$tudent")
                  .clickSubmit();
 
@@ -37,7 +37,7 @@ public class LoginTests extends BaseTest {
 
         LoginPage loginPage = new LoginPage(getDriver());
 
-        loginPage.provideEmail("demo@class.com")
+        loginPage.provideEmail("demo@testpro.io")
                  .providePassword("")
                  .clickSubmit();
 
