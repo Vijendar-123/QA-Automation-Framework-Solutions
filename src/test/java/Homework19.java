@@ -10,7 +10,7 @@ public class Homework19 extends BaseTest {
     public void deletePlaylist() throws InterruptedException {
         String expectedPlaylistDeletedMessage = "Deleted playlist \"TestPro Playlist.\"";
 
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
         openPlaylist();

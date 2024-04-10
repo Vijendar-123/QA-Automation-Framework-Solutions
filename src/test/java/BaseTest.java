@@ -22,8 +22,8 @@ public class BaseTest {
     public static Object[][] getDataFromDataProviders() {
 
         return new Object[][] {
-                {"invalid@mail.com", "invalidPass"},
-                {"demo@class.com", ""},
+                {"invalid@testpro.io", "invalidPass"},
+                {"demo@testpro.io", ""},
                 {"", ""}
         };
     }
