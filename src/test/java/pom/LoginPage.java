@@ -20,7 +20,7 @@ public class LoginPage extends BasePage{
         click(submitBtn);
     }
     public void login(){
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
     }

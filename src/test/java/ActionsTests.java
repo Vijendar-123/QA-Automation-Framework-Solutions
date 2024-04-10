@@ -16,7 +16,7 @@ public class ActionsTests extends BaseTest {
         HomePage homePage = new HomePage(driver);
         AllSongsPage allSongs = new AllSongsPage(driver);
 
-        loginPage.provideEmail("demo@class.com");
+        loginPage.provideEmail("demo@testpro.io");
         loginPage.providePassword("te$t$tudent");
         loginPage.clickSubmit();
         homePage.chooseAllSongsList();
