@@ -56,7 +56,7 @@ public class LoginPage extends BasePage {
 // and returns an instance of the "LoginPage" class.
 
     public void provideLoginSucceed() {
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmitBtn();
     }

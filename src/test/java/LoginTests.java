@@ -24,7 +24,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(getThreadLocal());
 
         // WHEN
-        loginPage.provideEmail("demo@class.com")
+        loginPage.provideEmail("demo@testpro.io")
                 .providePassword("te$t123")
                 .clickSubmitBtn();
 
@@ -38,7 +38,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(getThreadLocal());
 
         // WHEN
-        loginPage.provideEmail("demo@class.com")
+        loginPage.provideEmail("demo@testpro.io")
                 .providePassword("")
                 .clickSubmitBtn();
 
@@ -52,7 +52,7 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(getThreadLocal());
 
         // WHEN
-        loginPage.provideEmail("demo@class.com")
+        loginPage.provideEmail("demo@testpro.io")
                 .providePassword("te$t$tudent")
                 .clickSubmitBtn();
 
