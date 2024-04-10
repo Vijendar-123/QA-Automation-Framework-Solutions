@@ -5,19 +5,19 @@ Feature: Login feature
 #    This step sets up the initial state of the test by opening the login page.
 
   Scenario: Login Success
-    When I enter email "demo@class.com"
+    When I enter email "demo@testpro.io"
     And I enter password "te$t$tudent"
     And I submit
     Then I am logged in
 
   Scenario: Login incorrect password
-    When I enter email "demo@class.com"
+    When I enter email "demo@testpro.io"
     And I enter incorrect password "te1t9tudent"
     And I submit
     Then I still Login page
 
   Scenario: Login Not existing email
-    When I enter Not existing email "demo@class.com"
+    When I enter Not existing email "demo@testpro.io"
     And I enter password "te$t$tudent"
     And I submit
     Then I still Login page
