@@ -5,7 +5,7 @@ Feature: Login feature
 
     Given I open browser
     And I open Login page
-    When I enter email "demo@class.com"
+    When I enter email "demo@testpro.io"
     And I enter password "te$t$tudent"
     And I submit
     Then I am logged in
