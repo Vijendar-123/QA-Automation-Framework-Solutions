@@ -17,8 +17,8 @@ public class BaseTest {
     @DataProvider(name="IncorrectLoginData")
     public static Object[][] getDataFromDataProviders() {
         return new Object[][] {
-                {"invalid@mail.com", "invalidPassword"},
-                {"demo@class.com", ""},
+                {"invalid@testpro.io", "invalidPassword"},
+                {"demo@testpro.io", ""},
                 {"", ""}
         };
     }
@@ -27,8 +27,8 @@ public class BaseTest {
 //    @DataProvider(name="IncorrectLoginData")
 //    public Object[][] getDataFromDataProviders() {
 //        return new Object[][] {
-//                {"invalid@mail.com", "invalidPassword"},
-//                {"demo@class.com", ""},
+//                {"invalid@testpro.io", "invalidPassword"},
+//                {"demo@testpro.io", ""},
 //                {"", ""}
 //        };
 //    }

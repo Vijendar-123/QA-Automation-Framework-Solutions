@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class Homework18 extends BaseTest {
     @Test
     public void playSong() {
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
         clickPlay();
