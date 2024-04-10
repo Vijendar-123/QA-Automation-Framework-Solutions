@@ -13,7 +13,7 @@ public class ActionsTests extends BaseTest {
 //  Test #1 - Context Click
     @Test
     public void playSong() throws InterruptedException {
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
         chooseAllSongsList();
@@ -27,7 +27,7 @@ public class ActionsTests extends BaseTest {
     public void countSongsInPlaylist() {
         //Prerequisite - user created playlist named "Playlist Demo" with at least 1 song
 
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
         choosePlaylistByName("Playlist Demo");
@@ -39,7 +39,7 @@ public class ActionsTests extends BaseTest {
     // Test #3 - Mouse Hover
     @Test
     public void hoverOverPlayButton()   {
-        provideEmail("demo@class.com");
+        provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
         clickSubmit();
         Assert.assertTrue(hoverPlay().isDisplayed());
