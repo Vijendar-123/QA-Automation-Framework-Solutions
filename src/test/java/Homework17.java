@@ -14,7 +14,7 @@ public class Homework17 extends BaseTest {
             providePassword("te$t$tudent");
             clickSubmit();
             Thread.sleep(2000);
-            searchSong("Ketsa");
+            searchSong("Pluto");
             clickViewAllBtn();
             selectFirstSongResult();
             clickAddToBtn();
