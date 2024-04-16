@@ -8,7 +8,7 @@ public class Homework19 extends BaseTest {
     //Prerequisite - empty playlist to delete
     @Test
     public void deletePlaylist() throws InterruptedException {
-        String expectedPlaylistDeletedMessage = "Deleted playlist \"TestPro Playlist.\"";
+        String expectedPlaylistDeletedMessage = "Deleted playlist \"Test Pro Playlist.\"";
 
         provideEmail("demo@testpro.io");
         providePassword("te$t$tudent");
