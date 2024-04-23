@@ -8,7 +8,6 @@ import pagefactory.LoginPage;
 public class LoginTests extends BaseTest {
 
     //Fluent interfaces example
-
     @Test
     public void loginValidEmailPassword () {
 
@@ -21,7 +20,7 @@ public class LoginTests extends BaseTest {
 
         Assert.assertTrue(homePage.isAvatarDisplayed());
     }
-    
+
     @Test
     public void loginInvalidEmailValidPassword(){
 
