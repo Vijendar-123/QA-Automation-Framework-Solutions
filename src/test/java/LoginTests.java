@@ -8,6 +8,20 @@ import pagefactory.LoginPage;
 public class LoginTests extends BaseTest {
 
     //Fluent interfaces example
+
+    @Test
+    public void loginValidEmailPassword () {
+
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+
+        loginPage.provideEmail("demo@testpro.io")
+                .providePassword("te$t$tudent")
+                .clickSubmit();
+
+        Assert.assertTrue(homePage.isAvatarDisplayed());
+    }
+    
     @Test
     public void loginInvalidEmailValidPassword(){
 
@@ -18,18 +32,6 @@ public class LoginTests extends BaseTest {
                  .clickSubmit();
 
         Assert.assertEquals(getDriver().getCurrentUrl(), url); //https://qa.koel.app/
-    }
-    @Test
-    public void loginValidEmailPassword () {
-
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
-
-        loginPage.provideEmail("demo@testpro.io")
-                 .providePassword("te$t$tudent")
-                 .clickSubmit();
-
-        Assert.assertTrue(homePage.isAvatarDisplayed());
     }
 
     @Test
