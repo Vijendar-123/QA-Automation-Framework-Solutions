@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
     private WebElement passwordField;
     // Represents the password input field on the login form.
 
-    @FindBy(css = "a#hel")
+    @FindBy(css = "a[href='registration']")
     private WebElement registrationLink;
     // Represents the registration link.
 
@@ -56,8 +56,8 @@ public class LoginPage extends BasePage {
 // and returns an instance of the "LoginPage" class.
 
     public void provideLoginSucceed() {
-        provideEmail("demo@testpro.io");
-        providePassword("te$t$tudent");
+        provideEmail("vijendar@testpro.io");
+        providePassword("cnb243YB");
         clickSubmitBtn();
     }
 // The "provideLoginSucceed" method enters predefined email and password data

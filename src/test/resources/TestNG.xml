@@ -5,7 +5,7 @@
     <!--    It has attributes like name (suite name), parallel (test execution mode) -->
     <!--    and thread-count (number of threads for parallel execution).-->
     <test name="Example Test" preserve-order="false">
-        <parameter name="baseURL" value="https://bbb.testpro.io/"/>
+        <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="LoginTests"/>
         </classes>
